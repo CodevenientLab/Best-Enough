@@ -1,80 +1,70 @@
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { pricing } from "../data/business";
 
-function Rand(n) {
-  return `R${n.toLocaleString("en-ZA")}`;
-}
-
-const columns = [
-  { key: "code8", title: "Code 8", rows: pricing.code8, tone: "light" },
-  { key: "code10", title: "Code 10", rows: pricing.code10, tone: "dark" },
-  { key: "learners", title: "Learners", rows: pricing.learners, tone: "light" },
-];
+const rand = (n) => `R${n.toLocaleString("en-ZA")}`;
 
 export default function Pricing() {
+  const groups = [
+    { title: "Code 8", sub: "Light motor vehicle", rows: pricing.code8, featured: false },
+    { title: "Code 10", sub: "Larger vehicle training", rows: pricing.code10, featured: true },
+    { title: "Learners", sub: "All codes", rows: pricing.learners, featured: false },
+  ];
+
   return (
-    <section id="pricing" className="bg-white py-24 md:py-32">
-      <div className="max-w-7xl mx-auto px-5 md:px-8">
-        <div className="mb-14 max-w-xl">
-          <h2 className="font-display font-black uppercase text-5xl md:text-6xl leading-[0.95]">Lesson Pricing</h2>
-          <p className="text-steel mt-4 text-base leading-relaxed">
-            Straightforward, hourly pricing for every licence class — book as few or as many hours as you need.
-          </p>
+    <section id="pricing" className="section bg-white">
+      <div className="container">
+        <div className="section-intro items-end">
+          <div>
+            <p className="eyebrow">Straightforward pricing</p>
+            <h2 className="display-heading">Know the<br /><span>number.</span></h2>
+          </div>
+          <p className="section-copy">Start with an hour, build up your hours, or move straight into a full package. No complicated pricing maze.</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-4">
-          {columns.map((col, i) => (
-            <motion.div
-              key={col.key}
+        <div className="grid gap-4 md:grid-cols-3">
+          {groups.map((group, i) => (
+            <motion.article
+              key={group.title}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className={
-                col.tone === "dark"
-                  ? "bg-ink text-white p-8 md:p-9"
-                  : "bg-paper text-ink p-8 md:p-9 border border-paper-dim"
-              }
+              className={`price-card ${group.featured ? "price-card-featured" : ""}`}
             >
-              <h3 className="font-display font-bold uppercase text-2xl tracking-tight mb-6">{col.title}</h3>
-              <ul className="space-y-4">
-                {col.rows.map((row) => (
-                  <li
-                    key={row.label}
-                    className={`flex items-baseline justify-between pb-4 border-b ${
-                      col.tone === "dark" ? "border-white/15" : "border-paper-dim"
-                    }`}
-                  >
-                    <span className={col.tone === "dark" ? "text-white/70" : "text-steel"}>{row.label}</span>
-                    <span className="font-display font-bold text-3xl tracking-tight">{Rand(row.price)}</span>
-                  </li>
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="eyebrow !text-[10px]">{group.sub}</p>
+                  <h3 className="mt-2 font-display text-4xl font-bold uppercase">{group.title}</h3>
+                </div>
+                {group.featured && <span className="rounded-full bg-race-red px-3 py-1 text-[9px] font-bold uppercase tracking-[0.16em] text-white">Popular</span>}
+              </div>
+
+              <div className="mt-10">
+                {group.rows.map((row) => (
+                  <div key={row.label} className="flex items-end justify-between border-b border-black/[0.10] py-4 first:pt-0 last:border-0">
+                    <span className="text-sm text-steel">{row.label}</span>
+                    <span className="font-display text-3xl font-bold">{rand(row.price)}</span>
+                  </div>
                 ))}
-              </ul>
-            </motion.div>
+              </div>
+
+              <a href="#booking" className={`mt-7 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider ${group.featured ? "text-white" : "text-ink"} hover:text-race-red`}>
+                Enquire <ArrowRight size={15} />
+              </a>
+            </motion.article>
           ))}
         </div>
 
-        <div className="grid md:grid-cols-2 gap-4 mt-4">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.5, delay: 0.24 }}
-            className="bg-race-red text-white p-8 md:p-9 flex items-center justify-between"
-          >
-            <h3 className="font-display font-bold uppercase text-2xl tracking-tight">Car Hire</h3>
-            <span className="font-display font-bold text-3xl tracking-tight">{Rand(pricing.carHire.price)}</span>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="bg-charcoal text-white p-8 md:p-9 flex items-center justify-between"
-          >
-            <h3 className="font-display font-bold uppercase text-2xl tracking-tight">Truck Hire</h3>
-            <span className="font-display font-bold text-3xl tracking-tight">{Rand(pricing.truckHire.price)}</span>
-          </motion.div>
+        <div className="mt-4 grid gap-4 md:grid-cols-2">
+          <div className="flex items-center justify-between bg-paper px-7 py-6">
+            <div><p className="eyebrow !text-[9px]">For test day</p><h3 className="mt-1 font-display text-2xl font-bold uppercase">Car hire</h3></div>
+            <strong className="font-display text-3xl">R650</strong>
+          </div>
+          <div className="flex items-center justify-between bg-ink px-7 py-6 text-white">
+            <div><p className="eyebrow !text-[9px] !text-white/[0.45]">For test day</p><h3 className="mt-1 font-display text-2xl font-bold uppercase">Truck hire</h3></div>
+            <strong className="font-display text-3xl text-race-red-bright">R750</strong>
+          </div>
         </div>
       </div>
     </section>

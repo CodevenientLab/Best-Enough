@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { ArrowUpRight, Menu, Phone, X } from "lucide-react";
 import Logo from "./Logo";
 import { business } from "../data/business";
 
 const links = [
-  { label: "Home", href: "#home" },
   { label: "Lessons", href: "#lessons" },
   { label: "Pricing", href: "#pricing" },
-  { label: "About", href: "#about" },
+  { label: "Students", href: "#students" },
   { label: "Locations", href: "#locations" },
-  { label: "Contact", href: "#booking" },
 ];
 
 export default function Navbar() {
@@ -25,43 +23,33 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-ink/95 backdrop-blur-md shadow-[0_10px_30px_-15px_rgba(0,0,0,0.5)]" : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-5 md:px-8">
-        <div className={`flex items-center justify-between transition-all duration-300 ${scrolled ? "h-16" : "h-20"}`}>
-          <a href="#home" className="focus-ring" aria-label="Best Enough Driving School home">
+    <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled ? "bg-ink/[0.95] backdrop-blur-xl border-b border-white/[0.10]" : "bg-gradient-to-b from-black/75 to-transparent"}`}>
+      <div className="mx-auto max-w-[1440px] px-5 md:px-8">
+        <div className={`flex items-center justify-between transition-all duration-300 ${scrolled ? "h-[68px]" : "h-[82px]"}`}>
+          <a href="#home" aria-label="Best Enough Driving School home" className="focus-ring">
             <Logo variant="dark" size={scrolled ? "sm" : "md"} />
           </a>
 
-          <nav className="hidden lg:flex items-center gap-9">
-            {links.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                className="text-sm font-semibold text-white/80 hover:text-white transition-colors focus-ring"
-              >
-                {l.label}
+          <nav className="hidden lg:flex items-center gap-8">
+            {links.map((link) => (
+              <a key={link.href} href={link.href} className="nav-link">
+                {link.label}
               </a>
             ))}
           </nav>
 
-          <div className="hidden lg:block">
-            <a
-              href="#booking"
-              className="inline-flex items-center bg-race-red hover:bg-race-red-bright text-white font-bold text-sm px-6 py-3 transition-colors focus-ring"
-            >
-              Book Now
+          <div className="hidden lg:flex items-center gap-5">
+            <a href={business.phoneHref} className="flex items-center gap-2 text-white/70 hover:text-white text-sm font-semibold transition-colors focus-ring">
+              <Phone size={15} />
+              {business.phoneDisplay}
+            </a>
+            <a href="#booking" className="button button-red !py-3 !px-5">
+              Book a lesson
+              <ArrowUpRight size={16} />
             </a>
           </div>
 
-          <button
-            className="lg:hidden text-white p-2 focus-ring"
-            aria-label={open ? "Close menu" : "Open menu"}
-            onClick={() => setOpen((v) => !v)}
-          >
+          <button className="lg:hidden p-2 text-white focus-ring" onClick={() => setOpen((v) => !v)} aria-label={open ? "Close menu" : "Open menu"}>
             {open ? <X size={26} /> : <Menu size={26} />}
           </button>
         </div>
@@ -73,29 +61,19 @@ export default function Navbar() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="lg:hidden bg-ink overflow-hidden border-t border-white/10"
+            className="lg:hidden overflow-hidden border-t border-white/[0.10] bg-ink"
           >
-            <nav className="flex flex-col px-5 py-4">
-              {links.map((l) => (
-                <a
-                  key={l.href}
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className="text-white/85 text-base font-semibold py-3 border-b border-white/10 last:border-none focus-ring"
-                >
-                  {l.label}
+            <nav className="mx-auto max-w-[1440px] px-5 pb-6 pt-2">
+              {links.map((link) => (
+                <a key={link.href} href={link.href} onClick={() => setOpen(false)} className="block border-b border-white/[0.10] py-4 text-base font-semibold text-white/85">
+                  {link.label}
                 </a>
               ))}
-              <a
-                href="#booking"
-                onClick={() => setOpen(false)}
-                className="mt-4 bg-race-red text-white text-center font-bold text-sm px-6 py-3 focus-ring"
-              >
-                Book Now
+              <a href="#booking" onClick={() => setOpen(false)} className="button button-red mt-5 w-full">
+                Book a lesson <ArrowUpRight size={17} />
               </a>
-              <a href={business.phoneHref} className="mt-3 text-center text-white/60 text-sm py-2">
-                Or call {business.phoneDisplay}
+              <a href={business.phoneHref} className="flex items-center justify-center gap-2 py-4 text-sm font-semibold text-white/60">
+                <Phone size={15} /> {business.phoneDisplay}
               </a>
             </nav>
           </motion.div>

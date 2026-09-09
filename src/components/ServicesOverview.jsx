@@ -1,86 +1,47 @@
 import { motion } from "framer-motion";
-import { Car, Truck, BookOpen, KeyRound, Wrench } from "lucide-react";
+import { ArrowUpRight, BookOpen, CarFront, KeyRound, Truck } from "lucide-react";
+import { services } from "../data/business";
 
-const items = [
-  {
-    id: "code8",
-    icon: Car,
-    title: "Code 8",
-    copy: "Professional light motor vehicle training.",
-    span: "md:col-span-7",
-    tone: "dark",
-  },
-  {
-    id: "code10",
-    icon: Truck,
-    title: "Code 10",
-    copy: "Training for larger vehicles and licence preparation.",
-    span: "md:col-span-5",
-    tone: "red",
-  },
-  {
-    id: "learners",
-    icon: BookOpen,
-    title: "Learners",
-    copy: "Learner licence preparation and classes.",
-    span: "md:col-span-5",
-    tone: "light",
-  },
-  {
-    id: "car-hire",
-    icon: KeyRound,
-    title: "Car Hire",
-    copy: "Vehicle hire for your licence test.",
-    span: "md:col-span-3",
-    tone: "light",
-  },
-  {
-    id: "truck-hire",
-    icon: Wrench,
-    title: "Truck Hire",
-    copy: "Truck hire for your Code 10 test.",
-    span: "md:col-span-4",
-    tone: "dark",
-  },
-];
-
-const toneStyles = {
-  dark: "bg-ink text-white",
-  red: "bg-race-red text-white",
-  light: "bg-white text-ink border border-paper-dim",
-};
+const icons = { code8: CarFront, code10: Truck, learners: BookOpen, "car-hire": KeyRound, "truck-hire": Truck };
 
 export default function ServicesOverview() {
   return (
-    <section id="lessons" className="bg-paper py-24 md:py-32">
-      <div className="max-w-7xl mx-auto px-5 md:px-8">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
-          <h2 className="font-display font-black uppercase text-5xl md:text-6xl leading-[0.95] max-w-xl">
-            Choose Your Road
-          </h2>
-          <p className="text-steel max-w-sm text-base leading-relaxed">
-            Five services, one driving school. Pick the licence class or vehicle hire that matches where you're headed.
-          </p>
+    <section id="lessons" className="section paper-grid">
+      <div className="container">
+        <div className="section-intro">
+          <div>
+            <p className="eyebrow">What we do</p>
+            <h2 className="display-heading">One school.<br /><span>Every step.</span></h2>
+          </div>
+          <p className="section-copy">Whether you're starting with your learner's licence or preparing for a driving test, Best Enough keeps the process simple.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-          {items.map((item, idx) => {
-            const Icon = item.icon;
+        <div className="grid gap-px overflow-hidden border border-black/[0.10] bg-black/10 md:grid-cols-12">
+          {services.map((service, i) => {
+            const Icon = icons[service.id];
+            const wide = i === 0 || i === 1;
             return (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, y: 30 }}
+              <motion.a
+                key={service.id}
+                href="#booking"
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.5, delay: idx * 0.06 }}
-                className={`${item.span} ${toneStyles[item.tone]} p-8 md:p-10 flex flex-col justify-between min-h-[220px]`}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, delay: i * 0.06 }}
+                className={`service-card group ${wide ? "md:col-span-6" : "md:col-span-4"}`}
               >
-                <Icon size={30} strokeWidth={1.6} className={item.tone === "light" ? "text-race-red" : "text-white/90"} />
-                <div className="mt-10">
-                  <h3 className="font-display font-bold text-3xl uppercase tracking-tight mb-2">{item.title}</h3>
-                  <p className={item.tone === "light" ? "text-steel" : "text-white/75"}>{item.copy}</p>
+                <div className="flex items-start justify-between">
+                  <span className="service-index">0{i + 1}</span>
+                  <span className="icon-box"><Icon size={22} strokeWidth={1.7} /></span>
                 </div>
-              </motion.div>
+                <div className="mt-20">
+                  <h3 className="font-display text-4xl font-bold uppercase tracking-tight">{service.name}</h3>
+                  <p className="mt-2 max-w-sm text-sm leading-6 text-steel">{service.description}</p>
+                </div>
+                <span className="absolute bottom-8 right-8 flex h-9 w-9 items-center justify-center border border-black/[0.10] transition-all duration-300 group-hover:border-race-red group-hover:bg-race-red group-hover:text-white">
+                  <ArrowUpRight size={17} />
+                </span>
+              </motion.a>
             );
           })}
         </div>

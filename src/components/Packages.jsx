@@ -1,63 +1,50 @@
 import { motion } from "framer-motion";
-import { Info } from "lucide-react";
+import { ArrowUpRight, Check, Info } from "lucide-react";
 import { packages, packageGuaranteeNote } from "../data/business";
 
-function Rand(n) {
-  return `R${n.toLocaleString("en-ZA")}`;
-}
+const rand = (n) => `R${n.toLocaleString("en-ZA")}`;
 
 export default function Packages() {
   return (
-    <section className="bg-charcoal text-white py-24 md:py-32">
-      <div className="max-w-7xl mx-auto px-5 md:px-8">
-        <div className="mb-14 max-w-xl">
-          <h2 className="font-display font-black uppercase text-5xl md:text-6xl leading-[0.95]">
-            Full Packages
-          </h2>
-          <p className="text-white/65 mt-4 text-base leading-relaxed">
-            25 lessons plus vehicle hire, bundled into one package.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-4">
-          {packages.map((pkg, i) => (
-            <motion.div
-              key={pkg.id}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="bg-ink p-9 md:p-11 flex flex-col justify-between min-h-[260px] border border-white/10"
-            >
-              <div>
-                <h3 className="font-display font-bold uppercase text-3xl tracking-tight mb-2">{pkg.name}</h3>
-                <p className="text-white/60">{pkg.detail}</p>
-              </div>
-              <div className="mt-10 flex items-end justify-between">
-                <span className="font-display font-black text-5xl tracking-tight text-race-red-bright">
-                  {Rand(pkg.price)}
-                </span>
-                <a
-                  href="#booking"
-                  className="text-sm font-bold border border-white/25 hover:border-white/60 px-5 py-2.5 transition-colors focus-ring"
+    <section className="section bg-ink text-white">
+      <div className="container">
+        <div className="grid gap-12 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-5">
+            <p className="eyebrow !text-race-red-bright">Go all in</p>
+            <h2 className="display-heading !text-white">The package<br /><span>route.</span></h2>
+            <p className="mt-6 max-w-md text-sm leading-7 text-white/[0.55]">If you want a structured run at your licence, the full packages bundle 25 lessons with the relevant vehicle hire.</p>
+          </div>
+          <div className="lg:col-span-7">
+            <div className="grid gap-3 md:grid-cols-2">
+              {packages.map((pkg, i) => (
+                <motion.article
+                  key={pkg.id}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className={`package-card ${i === 1 ? "package-card-accent" : ""}`}
                 >
-                  Enquire
-                </a>
-              </div>
-            </motion.div>
-          ))}
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/[0.40]">25 lessons</span>
+                    <ArrowUpRight size={18} className="text-white/[0.35]" />
+                  </div>
+                  <h3 className="mt-10 font-display text-3xl font-bold uppercase">{pkg.name.replace(" Package", "")}<br />Package</h3>
+                  <p className="mt-2 text-sm text-white/50">{pkg.detail}</p>
+                  <div className="mt-12 flex items-end justify-between border-t border-white/[0.10] pt-5">
+                    <strong className="font-display text-5xl font-black text-race-red-bright">{rand(pkg.price)}</strong>
+                    <a href="#booking" className="text-xs font-bold uppercase tracking-wider text-white hover:text-race-red-bright">Enquire</a>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          </div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-8 flex gap-3 text-sm text-white/55 max-w-2xl"
-        >
-          <Info size={18} className="shrink-0 mt-0.5" />
+        <div className="mt-12 flex max-w-3xl gap-3 border-t border-white/[0.10] pt-6 text-xs leading-6 text-white/[0.40]">
+          <Info size={16} className="mt-1 shrink-0" />
           <p>{packageGuaranteeNote}</p>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
