@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDownRight, ArrowRight, MessageCircle } from "lucide-react";
 import { buildWhatsAppLink, defaultWhatsAppMessage } from "../utils/whatsapp";
-import heroPhoto from "../assets/photos/client-a.jpg";
+import heroPhoto from "../assets/photos/client-hero.webp";
 
 export default function Hero() {
   const reduce = useReducedMotion();

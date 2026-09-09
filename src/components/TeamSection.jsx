@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import teamPhoto from "../assets/photos/team.jpg";
+import teamPhoto from "../assets/photos/team.webp";
 
 export default function TeamSection() {
   return (
