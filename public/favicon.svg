@@ -1,0 +1,34 @@
+<svg viewBox="0 0 240 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="beRedGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#EF3441" />
+      <stop offset="1" stop-color="#A8121F" />
+    </linearGradient>
+    <linearGradient id="beCarGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F0454F" />
+      <stop offset="1" stop-color="#B31824" />
+    </linearGradient>
+  </defs>
+  <rect width="240" height="200" fill="#0b0b0c"/>
+  <path d="M30,32 L210,32 L120,180 Z" fill="url(#beRedGrad)" />
+  <g fill="#26262A">
+    <path d="M118,96 L14,74 L86,100 Z" />
+    <path d="M114,104 L20,94 L88,108 Z" />
+    <path d="M112,112 L28,116 L92,116 Z" />
+    <path d="M112,120 L38,138 L96,124 Z" />
+  </g>
+  <g fill="#26262A">
+    <path d="M122,96 L226,74 L154,100 Z" />
+    <path d="M126,104 L220,94 L152,108 Z" />
+    <path d="M128,112 L212,116 L148,116 Z" />
+    <path d="M128,120 L202,138 L144,124 Z" />
+  </g>
+  <g>
+    <path d="M48,132 C50,120 62,112 76,110 L96,94 C104,88 118,86 130,90 L152,108 C168,109 186,116 194,130 L194,138 L48,138 Z" fill="url(#beCarGrad)" />
+    <path d="M100,108 L120,94 L136,94 L150,108 Z" fill="#111114" />
+    <circle cx="82" cy="140" r="15" fill="#111114" />
+    <circle cx="82" cy="140" r="6.5" fill="#3a3a3f" />
+    <circle cx="176" cy="140" r="15" fill="#111114" />
+    <circle cx="176" cy="140" r="6.5" fill="#3a3a3f" />
+  </g>
+</svg>
