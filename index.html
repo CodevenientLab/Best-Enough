@@ -11,6 +11,10 @@
       rel="stylesheet"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0a0b" />
+    <meta name="author" content="Best Enough Driving School" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <title>Best Enough Driving School | Driving Lessons in Mmabatho &amp; Mafikeng</title>
     <meta
       name="description"
@@ -30,9 +34,11 @@
       content="Professional Code 8 and Code 10 driving lessons, learner's licence classes, car hire and truck hire in Mmabatho and Mafikeng."
     />
     <meta property="og:locale" content="en_ZA" />
+    <meta property="og:url" content="https://bestenoughdrivingschool.co.za/" />
     <meta property="og:image" content="https://bestenoughdrivingschool.co.za/og-image.jpg" />
+    <meta property="og:image:alt" content="Best Enough Driving School student beside a training vehicle" />
     <meta name="twitter:image" content="https://bestenoughdrivingschool.co.za/og-image.jpg" />
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Best Enough Driving School | The Best Driving In Mzansi" />
     <meta
       name="twitter:description"
@@ -42,35 +48,80 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "DrivingSchool",
-        "name": "Best Enough Driving School",
-        "alternateName": "Best Enough",
-        "slogan": "The Best Driving In Mzansi",
-        "email": "mtilatp@gmail.com",
-        "telephone": "+27782816263",
-        "areaServed": ["Mmabatho", "Mafikeng"],
-        "address": [
+        "@graph": [
           {
-            "@type": "PostalAddress",
-            "streetAddress": "210 Steve Biko, Unit 2",
-            "addressLocality": "Mmabatho",
-            "postalCode": "2735",
-            "addressCountry": "ZA"
+            "@type": "DrivingSchool",
+            "@id": "https://bestenoughdrivingschool.co.za/#school",
+            "name": "Best Enough Driving School",
+            "alternateName": "Best Enough",
+            "url": "https://bestenoughdrivingschool.co.za/",
+            "slogan": "The Best Driving In Mzansi",
+            "email": "mtilatp@gmail.com",
+            "telephone": "+27782816263",
+            "areaServed": ["Mmabatho", "Mafikeng", "North West"],
+            "image": "https://bestenoughdrivingschool.co.za/og-image.jpg",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "210 Steve Biko, Unit 2",
+              "addressLocality": "Mmabatho",
+              "postalCode": "2735",
+              "addressCountry": "ZA"
+            },
+            "location": [
+              {
+                "@type": "Place",
+                "name": "Best Enough Driving School Mmabatho",
+                "address": {
+                  "@type": "PostalAddress",
+                  "streetAddress": "210 Steve Biko, Unit 2",
+                  "addressLocality": "Mmabatho",
+                  "postalCode": "2735",
+                  "addressCountry": "ZA"
+                }
+              },
+              {
+                "@type": "Place",
+                "name": "Best Enough Driving School Mafikeng",
+                "address": {
+                  "@type": "PostalAddress",
+                  "streetAddress": "7356 Robert Sobukwe, Montshiwa, Next to Ditobane",
+                  "addressLocality": "Mafikeng",
+                  "postalCode": "2745",
+                  "addressCountry": "ZA"
+                }
+              }
+            ],
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Driving lessons and vehicle hire",
+              "itemListElement": [
+                { "@type": "Offer", "name": "Code 8 driving lessons", "priceCurrency": "ZAR", "price": "250" },
+                { "@type": "Offer", "name": "Code 10 driving lessons", "priceCurrency": "ZAR", "price": "300" },
+                { "@type": "Offer", "name": "Learner's licence classes", "priceCurrency": "ZAR", "price": "1000" },
+                { "@type": "Offer", "name": "Car hire", "priceCurrency": "ZAR", "price": "650" },
+                { "@type": "Offer", "name": "Truck hire", "priceCurrency": "ZAR", "price": "750" }
+              ]
+            }
           },
           {
-            "@type": "PostalAddress",
-            "streetAddress": "7356 Robert Sobukwe, Montshiwa, Next to Ditobane",
-            "addressLocality": "Mafikeng",
-            "postalCode": "2745",
-            "addressCountry": "ZA"
+            "@type": "WebSite",
+            "@id": "https://bestenoughdrivingschool.co.za/#website",
+            "url": "https://bestenoughdrivingschool.co.za/",
+            "name": "Best Enough Driving School",
+            "publisher": { "@id": "https://bestenoughdrivingschool.co.za/#school" },
+            "inLanguage": "en-ZA"
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              { "@type": "Question", "name": "What is Code 8?", "acceptedAnswer": { "@type": "Answer", "text": "Code 8 is the licence class for light motor vehicles (standard cars)." } },
+              { "@type": "Question", "name": "What is Code 10?", "acceptedAnswer": { "@type": "Answer", "text": "Code 10 is the licence class for larger vehicles, including trucks." } },
+              { "@type": "Question", "name": "Do you offer learner's licence classes?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Best Enough Driving School offers learner's licence preparation and classes covering all codes." } },
+              { "@type": "Question", "name": "How much are driving lessons?", "acceptedAnswer": { "@type": "Answer", "text": "Code 8 starts at R250 for 1 hour, Code 10 starts at R300 for 1 hour, and Learners classes are R1,000 for all codes." } },
+              { "@type": "Question", "name": "Where are you located?", "acceptedAnswer": { "@type": "Answer", "text": "Best Enough Driving School operates from Mmabatho at 210 Steve Biko, Unit 2, and Mafikeng at 7356 Robert Sobukwe, Montshiwa, next to Ditobane." } },
+              { "@type": "Question", "name": "How do I book?", "acceptedAnswer": { "@type": "Answer", "text": "Use the booking form or message Best Enough Driving School on WhatsApp at 078 281 6263." } }
+            ]
           }
-        ],
-        "makesOffer": [
-          { "@type": "Offer", "name": "Code 8 driving lessons" },
-          { "@type": "Offer", "name": "Code 10 driving lessons" },
-          { "@type": "Offer", "name": "Learner's licence classes" },
-          { "@type": "Offer", "name": "Car hire" },
-          { "@type": "Offer", "name": "Truck hire" }
         ]
       }
     </script>
