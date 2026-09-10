@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bestenoughdrivingschool.co.za/sitemap.xml
+Sitemap: https://bestenoughdriving.co.za/sitemap.xml
